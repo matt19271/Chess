@@ -1,0 +1,135 @@
+﻿<Window x:Class="CECS475.BoardGames.Chess.WpfView.PawnPromotionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CECS475.BoardGames.Chess.WpfView"
+        mc:Ignorable="d"
+        Title="PawnPromotionWindow" Height="250" Width="410"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <local:ChessViewModel x:Key="vm"/>
+        <local:ChessSquarePlayerConverter x:Key="PlayerColor"/>
+        <local:PawnPromoteImageConverter x:Key="QueenConverter"/>
+        <local:PawnPromoteImageConverterRook x:Key="RookConverter"/>
+        <local:PawnPromoteImageConverterKnight x:Key="KnightConverter"/>
+        <local:PawnPromoteImageConverterBishop x:Key="BishopConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:ChessViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label FontSize="20" Content="Promote pawn to:" Grid.Row="0" HorizontalContentAlignment="Center" Margin="0,0,0,159" Grid.RowSpan="2"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5,0,5,35"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Click="Button_Click_Knight" Width="90" Height ="90" Margin="5">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Teal" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightPink" TargetName="Border" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel>
+                    <Image Source="{Binding CurrentPlayer, Converter={StaticResource KnightConverter}}"/>
+                </StackPanel>
+            </Button>
+            <Button Click="Button_Click_Bishop" Width="90" Height ="90" Margin="5">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Teal" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightPink" TargetName="Border" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel>
+                    <Image Source="{Binding CurrentPlayer, Converter={StaticResource BishopConverter}}"/>
+                </StackPanel>
+            </Button>
+            <Button Click="Button_Click_Rook" Width="90" Height ="90" Margin="5">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Teal" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LIghtPink" TargetName="Border" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel>
+                    <Image Source="{Binding CurrentPlayer, Converter={StaticResource RookConverter}}"/>
+                </StackPanel>
+            </Button>
+            <Button Click="Button_Click_Queen" Width="90" Height ="90" Margin="5">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Teal"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightPink" TargetName="Border" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel>
+                    <Image Source="{Binding CurrentPlayer, Converter={StaticResource QueenConverter}}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+   
+</Window>
